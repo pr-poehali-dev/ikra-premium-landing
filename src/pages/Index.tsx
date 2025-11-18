@@ -19,21 +19,21 @@ const Index = () => {
       description: "Нежный вкус с ореховыми нотами. Крупные икринки насыщенного цвета с характерным морским ароматом.",
       weight: "50г",
       price: "4 500 ₽",
-      image: "https://images.unsplash.com/photo-1609501676725-7186f017a4b7?w=800&q=80"
+      image: "https://cdn.poehali.dev/files/b80e75be-2174-4327-824f-2d51ef4240d6.jpg"
     },
     {
       name: "Икра Лосося",
       description: "Классический деликатес с богатым вкусом. Яркие икринки правильной формы, тающие во рту.",
       weight: "100г",
       price: "1 800 ₽",
-      image: "https://images.unsplash.com/photo-1580822184713-fc5400e7fe10?w=800&q=80"
+      image: "https://cdn.poehali.dev/files/1027461d-e919-47fc-905f-227e056054db.jpg"
     },
     {
       name: "Подарочный Набор",
       description: "Эксклюзивный набор из двух видов икры в премиальной упаковке. Идеальный подарок для особого случая.",
       weight: "150г",
       price: "7 900 ₽",
-      image: "https://images.unsplash.com/photo-1551024601-bec78aea704b?w=800&q=80"
+      image: "https://cdn.poehali.dev/files/d2e5eef2-6849-4470-96ed-63b85b138686.jpeg"
     }
   ];
 
@@ -111,7 +111,7 @@ const Index = () => {
       <section 
         className="relative min-h-screen flex items-center justify-center bg-cover bg-center"
         style={{
-          backgroundImage: "linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1580822184713-fc5400e7fe10?w=1920&q=80')"
+          backgroundImage: "linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://cdn.poehali.dev/files/0bff42b7-4087-4dcc-a523-4135873d6f5d.jpg')"
         }}
       >
         <div className="container mx-auto px-4 text-center text-white z-10">
@@ -265,7 +265,7 @@ const Index = () => {
       <section 
         className="py-24 bg-cover bg-center relative"
         style={{
-          backgroundImage: "linear-gradient(rgba(139, 21, 56, 0.9), rgba(139, 21, 56, 0.9)), url('https://images.unsplash.com/photo-1551024601-bec78aea704b?w=1920&q=80')"
+          backgroundImage: "linear-gradient(rgba(139, 21, 56, 0.9), rgba(139, 21, 56, 0.9)), url('https://cdn.poehali.dev/files/d2e5eef2-6849-4470-96ed-63b85b138686.jpeg')"
         }}
       >
         <div className="container mx-auto px-4 text-center text-white z-10 relative">
