@@ -7,35 +7,60 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import Icon from "@/components/ui/icon";
+import { useCart } from "@/contexts/CartContext";
+import { Link } from "react-router-dom";
+import { useToast } from "@/hooks/use-toast";
 
 const Index = () => {
+  const { addItem, itemCount } = useCart();
+  const { toast } = useToast();
   const scrollToProducts = () => {
     document.getElementById('catalog')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   const products = [
     {
+      id: "caviar-sturgeon",
       name: "Икра Осетра",
       description: "Нежный вкус с ореховыми нотами. Крупные икринки насыщенного цвета с характерным морским ароматом.",
       weight: "50г",
-      price: "4 500 ₽",
+      price: 4500,
+      priceText: "4 500 ₽",
       image: "https://cdn.poehali.dev/files/b80e75be-2174-4327-824f-2d51ef4240d6.jpg"
     },
     {
+      id: "caviar-salmon",
       name: "Икра Лосося",
       description: "Классический деликатес с богатым вкусом. Яркие икринки правильной формы, тающие во рту.",
       weight: "100г",
-      price: "1 800 ₽",
+      price: 1800,
+      priceText: "1 800 ₽",
       image: "https://cdn.poehali.dev/files/1027461d-e919-47fc-905f-227e056054db.jpg"
     },
     {
+      id: "caviar-gift-set",
       name: "Подарочный Набор",
       description: "Эксклюзивный набор из двух видов икры в премиальной упаковке. Идеальный подарок для особого случая.",
       weight: "150г",
-      price: "7 900 ₽",
+      price: 7900,
+      priceText: "7 900 ₽",
       image: "https://cdn.poehali.dev/files/d2e5eef2-6849-4470-96ed-63b85b138686.jpeg"
     }
   ];
+
+  const handleAddToCart = (product: typeof products[0]) => {
+    addItem({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      weight: product.weight,
+      image: product.image
+    });
+    toast({
+      title: "Добавлено в корзину",
+      description: `${product.name} добавлен в корзину`,
+    });
+  };
 
   const advantages = [
     {
@@ -110,6 +135,20 @@ const Index = () => {
     <div className="min-h-screen bg-cover bg-center bg-fixed" style={{
       backgroundImage: "linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://cdn.poehali.dev/files/82499c38-de6c-4bad-be59-1514bf50108d.jpg')"
     }}>
+      <div className="fixed top-6 right-6 z-50">
+        <Link to="/cart">
+          <Button size="lg" className="bg-primary hover:bg-primary/90 rounded-full shadow-2xl relative">
+            <Icon name="ShoppingCart" size={24} className="mr-2" />
+            Корзина
+            {itemCount > 0 && (
+              <span className="absolute -top-2 -right-2 bg-secondary text-foreground w-6 h-6 rounded-full flex items-center justify-center text-sm font-bold">
+                {itemCount}
+              </span>
+            )}
+          </Button>
+        </Link>
+      </div>
+
       <section 
         className="relative min-h-screen flex items-center justify-center"
       >
@@ -178,10 +217,14 @@ const Index = () => {
                   <p className="text-muted-foreground mb-4 leading-relaxed">{product.description}</p>
                   <div className="flex items-center justify-between mb-4">
                     <span className="text-sm text-muted-foreground font-medium">{product.weight}</span>
-                    <span className="text-2xl font-bold text-secondary">{product.price}</span>
+                    <span className="text-2xl font-bold text-secondary">{product.priceText}</span>
                   </div>
-                  <Button className="w-full bg-primary hover:bg-primary/90 rounded-full font-semibold">
-                    Подробнее
+                  <Button 
+                    onClick={() => handleAddToCart(product)}
+                    className="w-full bg-primary hover:bg-primary/90 rounded-full font-semibold"
+                  >
+                    <Icon name="ShoppingCart" size={18} className="mr-2" />
+                    В корзину
                   </Button>
                 </CardContent>
               </Card>
