@@ -111,7 +111,7 @@ const Index = () => {
       <section 
         className="relative min-h-screen flex items-center justify-center bg-cover bg-center"
         style={{
-          backgroundImage: "linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://cdn.poehali.dev/files/0bff42b7-4087-4dcc-a523-4135873d6f5d.jpg')"
+          backgroundImage: "linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://cdn.poehali.dev/files/82499c38-de6c-4bad-be59-1514bf50108d.jpg')"
         }}
       >
         <div className="container mx-auto px-4 text-center text-white z-10">
