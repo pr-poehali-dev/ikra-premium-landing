@@ -107,12 +107,11 @@ const Index = () => {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-cover bg-center bg-fixed" style={{
+      backgroundImage: "linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://cdn.poehali.dev/files/82499c38-de6c-4bad-be59-1514bf50108d.jpg')"
+    }}>
       <section 
-        className="relative min-h-screen flex items-center justify-center bg-cover bg-center"
-        style={{
-          backgroundImage: "linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://cdn.poehali.dev/files/82499c38-de6c-4bad-be59-1514bf50108d.jpg')"
-        }}
+        className="relative min-h-screen flex items-center justify-center"
       >
         <div className="container mx-auto px-4 text-center text-white z-10">
           <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-fade-in">
@@ -135,7 +134,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-background">
+      <section className="py-20 bg-background/95 backdrop-blur-sm">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-primary">
             Почему выбирают нас?
@@ -156,7 +155,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="catalog" className="py-20 bg-muted/30">
+      <section id="catalog" className="py-20 bg-muted/50 backdrop-blur-sm">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-4 text-primary">
             Наша коллекция
@@ -191,7 +190,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-background">
+      <section className="py-20 bg-background/95 backdrop-blur-sm">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-primary">
             Всего 3 шага до идеальной икры
@@ -213,7 +212,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-muted/30">
+      <section className="py-20 bg-muted/50 backdrop-blur-sm">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-primary">
             Нас рекомендуют
@@ -238,7 +237,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-background">
+      <section className="py-20 bg-background/95 backdrop-blur-sm">
         <div className="container mx-auto px-4 max-w-3xl">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-primary">
             Частые вопросы
@@ -263,10 +262,7 @@ const Index = () => {
       </section>
 
       <section 
-        className="py-24 bg-cover bg-center relative"
-        style={{
-          backgroundImage: "linear-gradient(rgba(139, 21, 56, 0.9), rgba(139, 21, 56, 0.9)), url('https://cdn.poehali.dev/files/d2e5eef2-6849-4470-96ed-63b85b138686.jpeg')"
-        }}
+        className="py-24 relative bg-primary/95 backdrop-blur-sm"
       >
         <div className="container mx-auto px-4 text-center text-white z-10 relative">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
