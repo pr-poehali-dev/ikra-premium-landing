@@ -326,7 +326,7 @@ const Index = () => {
             </div>
           </div>
           <div className="border-t border-background/20 pt-8 text-center opacity-60">
-            <p>© 2024 Икорный Дом. Все права защищены.</p>
+            <p>© 2013 ЭкоФиш+ </p>
           </div>
         </div>
       </footer>
