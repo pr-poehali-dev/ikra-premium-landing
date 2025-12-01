@@ -308,16 +308,15 @@ const Index = () => {
           <div className="grid md:grid-cols-3 gap-8 mb-8">
             <div>
               <h3 className="text-2xl font-bold mb-4 text-secondary">ЭкоФиш+</h3>
-              <p className="opacity-80 leading-relaxed">
-                Премиальная икра с 2020 года.<br />
-                Качество, проверенное временем.
-              </p>
+              <p className="opacity-80 leading-relaxed">ООО «ЭкоФиш+» основано в 2013 году специально для выращивания осетровых видов рыб и черной икры в реке Ахтуба в Харабалинском районе Астраханской области.</p>
             </div>
             <div>
               <h4 className="font-bold mb-4 text-lg">Контакты</h4>
-              <p className="opacity-80 mb-2">Телефон: +7 (495) 123-45-67</p>
-              <p className="opacity-80 mb-2">Email: info@ikorniydom.ru</p>
-              <p className="opacity-80">Москва, ул. Примерная, 1</p>
+              <p className="opacity-80 mb-2">Телефон:
+8-927-573-12-73 Валерий
+8-927-560-79-19 Любовь</p>
+              <p className="opacity-80 mb-2">Email:  ahtuba-777@mail.ru</p>
+              <p className="opacity-80"></p>
             </div>
             <div>
               <h4 className="font-bold mb-4 text-lg">Часы работы</h4>
