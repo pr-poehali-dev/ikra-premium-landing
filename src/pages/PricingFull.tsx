@@ -2,69 +2,109 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import Icon from "@/components/ui/icon";
 import { Link } from "react-router-dom";
+import { useCart } from "@/contexts/CartContext";
+import { useToast } from "@/hooks/use-toast";
+import { useState } from "react";
 
 const PricingFull = () => {
+  const { addItem, itemCount } = useCart();
+  const { toast } = useToast();
+  const [selectedProducts, setSelectedProducts] = useState<{[key: string]: string}>({});
   const caviarProducts = [
     {
+      id: "caviar-sterlet",
       name: "Икра стерляди",
       description: "Черная, зернистая, малосольная, без консервантов",
       promo: true,
       prices: [
-        { volume: "Менее 1 кг", price: "44 000 ₽/кг", oldPrice: "48 000 ₽" },
-        { volume: "Более 1 кг", price: "42 000 ₽/кг", oldPrice: "48 000 ₽" },
-        { volume: "Более 3 кг", price: "40 000 ₽/кг", oldPrice: "48 000 ₽" }
+        { volume: "Менее 1 кг", price: "44 000 ₽/кг", priceNum: 44000, oldPrice: "48 000 ₽" },
+        { volume: "Более 1 кг", price: "42 000 ₽/кг", priceNum: 42000, oldPrice: "48 000 ₽" },
+        { volume: "Более 3 кг", price: "40 000 ₽/кг", priceNum: 40000, oldPrice: "48 000 ₽" }
       ]
     },
     {
+      id: "caviar-sturgeon-full",
       name: "Икра осетра",
       description: "Черная, зернистая, малосольная, без консервантов",
       promo: false,
       prices: [
-        { volume: "Любой объем", price: "56 000 ₽/кг", oldPrice: null }
+        { volume: "Любой объем", price: "56 000 ₽/кг", priceNum: 56000, oldPrice: null }
       ]
     }
   ];
 
   const fishProducts = [
     {
+      id: "sturgeon-fresh",
       name: "Осетр речной",
       description: "Не потрошеный, охлажденный или быстрозамороженный",
       prices: [
-        { volume: "3-4 кг", price: "1 750 ₽/кг", oldPrice: null },
-        { volume: "4-5 кг", price: "1 850 ₽/кг", oldPrice: null },
-        { volume: "5-6 кг", price: "1 950 ₽/кг", oldPrice: null },
-        { volume: "6-8 кг", price: "1 900 ₽/кг", oldPrice: "2 050 ₽" },
-        { volume: "8-10 кг", price: "2 000 ₽/кг", oldPrice: "2 150 ₽" },
-        { volume: "10+ кг", price: "2 250 ₽/кг", oldPrice: null }
+        { volume: "3-4 кг", price: "1 750 ₽/кг", priceNum: 1750, oldPrice: null },
+        { volume: "4-5 кг", price: "1 850 ₽/кг", priceNum: 1850, oldPrice: null },
+        { volume: "5-6 кг", price: "1 950 ₽/кг", priceNum: 1950, oldPrice: null },
+        { volume: "6-8 кг", price: "1 900 ₽/кг", priceNum: 1900, oldPrice: "2 050 ₽" },
+        { volume: "8-10 кг", price: "2 000 ₽/кг", priceNum: 2000, oldPrice: "2 150 ₽" },
+        { volume: "10+ кг", price: "2 250 ₽/кг", priceNum: 2250, oldPrice: null }
       ]
     },
     {
+      id: "sterlet-fresh",
       name: "Стерлядь речная",
       description: "Охлажденная или быстрозамороженная",
       prices: [
-        { volume: "До 1,5 кг", price: "1 500 ₽/кг", oldPrice: "1 650 ₽" },
-        { volume: "От 1,5 кг", price: "1 650 ₽/кг", oldPrice: null }
+        { volume: "До 1,5 кг", price: "1 500 ₽/кг", priceNum: 1500, oldPrice: "1 650 ₽" },
+        { volume: "От 1,5 кг", price: "1 650 ₽/кг", priceNum: 1650, oldPrice: null }
       ]
     },
     {
+      id: "sturgeon-smoked-hot",
       name: "Осетр горячего копчения",
       description: "На опилках (ветла + груша + ольха)",
       prices: [
-        { volume: "2,5-3,5 кг/шт", price: "3 600 ₽/кг", oldPrice: null, note: "потрошеный с головой и хвостом" },
-        { volume: "2,2-3,3 кг/шт", price: "3 950 ₽/кг", oldPrice: null, note: "потрошеный без головы и хвоста" }
+        { volume: "2,5-3,5 кг/шт", price: "3 600 ₽/кг", priceNum: 3600, oldPrice: null, note: "потрошеный с головой и хвостом" },
+        { volume: "2,2-3,3 кг/шт", price: "3 950 ₽/кг", priceNum: 3950, oldPrice: null, note: "потрошеный без головы и хвоста" }
       ]
     },
     {
+      id: "sturgeon-balyk",
       name: "Балык-книжка из осетра",
       description: "Холодного подкопчения на опилках (шелковица)",
       prices: [
-        { volume: "2,5-4 кг", price: "4 900 ₽/кг", oldPrice: null, note: "без головы и хвоста" }
+        { volume: "2,5-4 кг", price: "4 900 ₽/кг", priceNum: 4900, oldPrice: null, note: "без головы и хвоста" }
       ]
     }
   ];
 
+  const handleAddToCart = (productId: string, productName: string, price: number, volume: string) => {
+    addItem({
+      id: `${productId}-${volume}`,
+      name: `${productName} (${volume})`,
+      price: price,
+      weight: volume,
+      image: "https://cdn.poehali.dev/files/b80e75be-2174-4327-824f-2d51ef4240d6.jpg"
+    });
+    toast({
+      title: "Добавлено в корзину",
+      description: `${productName} (${volume}) добавлен в корзину`,
+    });
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-muted/30 to-background">
+      <div className="fixed top-6 right-6 z-50">
+        <Link to="/cart">
+          <Button size="lg" className="bg-primary hover:bg-primary/90 rounded-full shadow-2xl relative">
+            <Icon name="ShoppingCart" size={24} className="mr-2" />
+            Корзина
+            {itemCount > 0 && (
+              <span className="absolute -top-2 -right-2 bg-secondary text-foreground w-6 h-6 rounded-full flex items-center justify-center text-sm font-bold">
+                {itemCount}
+              </span>
+            )}
+          </Button>
+        </Link>
+      </div>
+
       <div className="fixed top-6 left-6 z-50">
         <Link to="/">
           <Button variant="outline" size="lg" className="rounded-full shadow-lg bg-background/80 backdrop-blur-sm">
@@ -108,16 +148,26 @@ const PricingFull = () => {
                 <CardContent className="pt-6">
                   <div className="space-y-4">
                     {product.prices.map((priceItem, priceIndex) => (
-                      <div key={priceIndex} className="flex items-center justify-between p-4 bg-background rounded-lg border-2 border-border hover:border-primary transition-colors">
-                        <div>
-                          <span className="font-semibold text-lg">{priceItem.volume}</span>
+                      <div key={priceIndex} className="p-4 bg-background rounded-lg border-2 border-border hover:border-primary transition-colors">
+                        <div className="flex items-center justify-between mb-3">
+                          <div>
+                            <span className="font-semibold text-lg">{priceItem.volume}</span>
+                          </div>
+                          <div className="text-right">
+                            <div className="text-2xl font-bold text-primary">{priceItem.price}</div>
+                            {priceItem.oldPrice && (
+                              <div className="text-muted-foreground line-through text-sm">{priceItem.oldPrice}</div>
+                            )}
+                          </div>
                         </div>
-                        <div className="text-right">
-                          <div className="text-2xl font-bold text-primary">{priceItem.price}</div>
-                          {priceItem.oldPrice && (
-                            <div className="text-muted-foreground line-through text-sm">{priceItem.oldPrice}</div>
-                          )}
-                        </div>
+                        <Button 
+                          onClick={() => handleAddToCart(product.id, product.name, priceItem.priceNum, priceItem.volume)}
+                          className="w-full bg-primary hover:bg-primary/90 rounded-full"
+                          size="sm"
+                        >
+                          <Icon name="ShoppingCart" size={16} className="mr-2" />
+                          Добавить в корзину
+                        </Button>
                       </div>
                     ))}
                   </div>
@@ -137,19 +187,29 @@ const PricingFull = () => {
                 <CardContent className="pt-6">
                   <div className="space-y-4">
                     {product.prices.map((priceItem, priceIndex) => (
-                      <div key={priceIndex} className="flex items-center justify-between p-4 bg-background rounded-lg border-2 border-border hover:border-primary transition-colors">
-                        <div>
-                          <div className="font-semibold text-lg">{priceItem.volume}</div>
-                          {priceItem.note && (
-                            <div className="text-sm text-muted-foreground mt-1">{priceItem.note}</div>
-                          )}
+                      <div key={priceIndex} className="p-4 bg-background rounded-lg border-2 border-border hover:border-primary transition-colors">
+                        <div className="flex items-center justify-between mb-3">
+                          <div>
+                            <div className="font-semibold text-lg">{priceItem.volume}</div>
+                            {priceItem.note && (
+                              <div className="text-sm text-muted-foreground mt-1">{priceItem.note}</div>
+                            )}
+                          </div>
+                          <div className="text-right">
+                            <div className="text-2xl font-bold text-primary">{priceItem.price}</div>
+                            {priceItem.oldPrice && (
+                              <div className="text-muted-foreground line-through text-sm">{priceItem.oldPrice}</div>
+                            )}
+                          </div>
                         </div>
-                        <div className="text-right">
-                          <div className="text-2xl font-bold text-primary">{priceItem.price}</div>
-                          {priceItem.oldPrice && (
-                            <div className="text-muted-foreground line-through text-sm">{priceItem.oldPrice}</div>
-                          )}
-                        </div>
+                        <Button 
+                          onClick={() => handleAddToCart(product.id, product.name, priceItem.priceNum, priceItem.volume)}
+                          className="w-full bg-primary hover:bg-primary/90 rounded-full"
+                          size="sm"
+                        >
+                          <Icon name="ShoppingCart" size={16} className="mr-2" />
+                          Добавить в корзину
+                        </Button>
                       </div>
                     ))}
                   </div>

@@ -163,13 +163,25 @@ const Index = () => {
             Премиальная икра с бережной доставкой до вашего стола.<br />
             Идеально для праздника, ужина или особого подарка.
           </p>
-          <Button 
-            onClick={scrollToProducts}
-            size="lg"
-            className="bg-secondary hover:bg-secondary/90 text-foreground font-semibold text-lg px-8 py-6 rounded-full shadow-2xl transition-all hover:scale-105"
-          >
-            Выбрать икру
-          </Button>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Button 
+              onClick={scrollToProducts}
+              size="lg"
+              className="bg-secondary hover:bg-secondary/90 text-foreground font-semibold text-lg px-8 py-6 rounded-full shadow-2xl transition-all hover:scale-105"
+            >
+              Выбрать икру
+            </Button>
+            <Link to="/prices">
+              <Button 
+                size="lg"
+                variant="outline"
+                className="bg-background/80 backdrop-blur-sm hover:bg-background font-semibold text-lg px-8 py-6 rounded-full shadow-2xl transition-all hover:scale-105"
+              >
+                <Icon name="Receipt" size={24} className="mr-2" />
+                Полный прайс-лист
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
 

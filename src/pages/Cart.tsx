@@ -1,5 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { useCart } from "@/contexts/CartContext";
 import Icon from "@/components/ui/icon";
 import { Link } from "react-router-dom";
@@ -10,15 +12,28 @@ const Cart = () => {
   const { items, removeItem, updateQuantity, clearCart, total } = useCart();
   const { toast } = useToast();
   const [isOrdering, setIsOrdering] = useState(false);
+  const [customerName, setCustomerName] = useState("");
+  const [customerPhone, setCustomerPhone] = useState("");
 
   const handleOrder = () => {
+    if (!customerName.trim() || !customerPhone.trim()) {
+      toast({
+        title: "Ошибка",
+        description: "Пожалуйста, заполните все поля",
+        variant: "destructive"
+      });
+      return;
+    }
+
     setIsOrdering(true);
     setTimeout(() => {
       toast({
         title: "Заказ оформлен!",
-        description: "Мы свяжемся с вами в ближайшее время для подтверждения заказа.",
+        description: `Спасибо, ${customerName}! Мы свяжемся с вами по номеру ${customerPhone} для подтверждения заказа.`,
       });
       clearCart();
+      setCustomerName("");
+      setCustomerPhone("");
       setIsOrdering(false);
     }, 1500);
   };
@@ -141,6 +156,35 @@ const Cart = () => {
                     <div className="flex justify-between text-xl font-bold">
                       <span className="text-primary">Всего:</span>
                       <span className="text-secondary">{total.toLocaleString('ru-RU')} ₽</span>
+                    </div>
+                  </div>
+
+                  <div className="space-y-4 mb-6">
+                    <div>
+                      <Label htmlFor="name" className="text-sm font-semibold mb-2 block">
+                        Ваше имя
+                      </Label>
+                      <Input
+                        id="name"
+                        type="text"
+                        placeholder="Введите ваше имя"
+                        value={customerName}
+                        onChange={(e) => setCustomerName(e.target.value)}
+                        className="rounded-full"
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="phone" className="text-sm font-semibold mb-2 block">
+                        Номер телефона
+                      </Label>
+                      <Input
+                        id="phone"
+                        type="tel"
+                        placeholder="+7 (999) 123-45-67"
+                        value={customerPhone}
+                        onChange={(e) => setCustomerPhone(e.target.value)}
+                        className="rounded-full"
+                      />
                     </div>
                   </div>
 
