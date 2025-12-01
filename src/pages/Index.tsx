@@ -307,7 +307,7 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-3 gap-8 mb-8">
             <div>
-              <h3 className="text-2xl font-bold mb-4 text-secondary">Икорный Дом</h3>
+              <h3 className="text-2xl font-bold mb-4 text-secondary">ЭкоФиш+</h3>
               <p className="opacity-80 leading-relaxed">
                 Премиальная икра с 2020 года.<br />
                 Качество, проверенное временем.
