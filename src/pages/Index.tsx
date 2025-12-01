@@ -173,27 +173,6 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-background/95 backdrop-blur-sm">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-primary">
-            Почему выбирают нас?
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {advantages.map((item, index) => (
-              <Card key={index} className="text-center border-2 border-border hover:border-secondary transition-all hover:shadow-xl">
-                <CardContent className="pt-12 pb-8">
-                  <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary/10 mb-6">
-                    <Icon name={item.icon} size={40} className="text-primary" />
-                  </div>
-                  <h3 className="text-2xl font-bold mb-4 text-primary">{item.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed">{item.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section id="catalog" className="py-20 bg-muted/50 backdrop-blur-sm">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-4 text-primary">
